@@ -24,6 +24,29 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyChT4oUg_o3UEehKlnwvO_6ENpA9v6OYss",
+        authDomain: "movietypes-be0b3.firebaseapp.com",
+        projectId: "movietypes-be0b3",
+        storageBucket: "movietypes-be0b3.appspot.com",
+        messagingSenderId: "623536813541",
+        appId: "1:623536813541:web:88741cfd2e3a95e2baeb0c",
+        measurementId: "G-LPYJY6SSBC"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
     <title>React App</title>
 </head>
 
