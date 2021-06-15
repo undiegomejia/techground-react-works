@@ -1,23 +1,23 @@
-import React from 'react';
+import React from 'react'
 import themoviedb from '../api/themoviedb'
 import SearchBar from './SearchBar';
 import VideoDetails from './VideoDetails'
 import VideoList from './VideoList'
 
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import firebase from "firebase/app";
-// If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
-// import * as firebase from "firebase/app"
+// // Firebase App (the core Firebase SDK) is always required and must be listed first
+// import firebase from "firebase/app";
+// // If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
+// // import * as firebase from "firebase/app"
 
-// Add the Firebase products that you want to use
-import "firebase/auth";
-import "firebase/firestore";
+// // Add the Firebase products that you want to use
+// import "firebase/auth";
+// import "firebase/firestore";
 
-const firebaseConfig = {
-  // ...
-};
+// const firebaseConfig = {
+//   // ...
+// };
 
-firebase.initializeApp(firebaseConfig)
+// firebase.initializeApp(firebaseConfig)
 
 class App extends React.Component {
 
@@ -40,6 +40,27 @@ class App extends React.Component {
     })
   }
 
+  getUpcoming = async ()=>{
+    const response = await themoviedb.get('/movie/upcoming')
+    this.setState({
+      movies: response.data.results,
+    })
+  }
+
+  getTopRated = async ()=>{
+    const response = await themoviedb.get('/tv/top_rated')
+    this.setState({
+      movies: response.data.results,
+    })
+  }
+
+  getPopularMovies = async ()=>{
+    const response = await themoviedb.get('/movie/popular')
+    this.setState({
+      movies: response.data.results,
+    })
+  }
+
   onMovieSelect = (movie: any) => {
     console.log('App', movie)
     this.setState({selectedMovie:movie})
@@ -53,6 +74,11 @@ class App extends React.Component {
         <div className="ui grid">
           <div className="ui row">
             <div className="eleven wide column">
+              <div className="ui buttons">
+                <button onClick={this.getUpcoming} className="ui button primary">Upcoming Movies</button>
+                <button onClick={this.getTopRated} className="ui button secondary">Top Rated TV Shows</button>
+                <button onClick={this.getPopularMovies} className="ui button yellow">Popular Movies</button>
+              </div>
               <VideoDetails movie={this.state.selectedMovie}/>
             </div>
             <div className="five wide column">
